@@ -28,9 +28,11 @@ mrproper: clean
 install: all
 	@echo "Installing..."
 	install homesay /usr/bin
+	install homespeak /usr/bin
 	cp -rf homecows /usr/share
 
 uninstall:
 	@echo "Uninstalling..."
 	rm -rf /usr/share/homecows
 	rm -rf /usr/bin/homesay
+	rm -rf /usr/bin/homespeak
