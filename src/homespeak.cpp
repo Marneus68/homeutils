@@ -91,6 +91,7 @@ mod_map mods = {
 
 rep_map cols = {
     {"nop", "\033[00m"},
+    {"bg", "\033[107m"},
     {"aA", "\033[38;5;124m"},
     {"aT", "\033[38;5;130m"},
     {"tA", "\033[38;5;142m"},
@@ -109,7 +110,8 @@ int main(int argc, const char *argv[])
 {
     std::string name = "",
                 str = "";
-    bool color = false;
+    bool    color = false,
+            bg = false;
     
     for( int i = 1; i < argc; i++ ) {
         std::string s = std::string(argv[i]);
@@ -117,9 +119,14 @@ int main(int argc, const char *argv[])
             s = s.substr(2, s.length());
             if (s.compare("color")==0) {
                 color = true;
+            } else if (s.compare("bg")==0) {
+                bg = true;
             }
         } else {
-            if (name.compare("")==0) { name = argv[i]; continue; }
+            if (name.compare("")==0) { 
+                name = argv[i]; 
+                continue; 
+            }
             str += argv[i];
             str += " ";
         }
@@ -127,10 +134,9 @@ int main(int argc, const char *argv[])
 
     for( it_mod_map it = mods.begin(); it != mods.end(); it++ ) {
         if (!name.compare(it->first)) {
-            if (color)
-                std::cout << cols[name] << it->second(str) << cols["nop"] << std::endl;
-            else
-                std::cout << it->second(str) << std::endl;
+            if (color) std::cout << cols[name];
+            if (bg) std::cout << cols["bg"];
+            std::cout << it->second(str) << cols["nop"] << std::endl;
         }
     }
     return EXIT_SUCCESS;

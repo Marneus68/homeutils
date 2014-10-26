@@ -1,0 +1,47 @@
+#!/bin/sh
+STR="This is a test string. I have a common cold and I hate that. I'm not sure I really love that. I'm trying funny sentences to see what happens."
+echo "================="
+echo "Testing \"homespeak\""
+echo "================="
+./homespeak aA $STR
+./homespeak aT $STR
+./homespeak tA $STR
+./homespeak cG $STR
+./homespeak aC $STR
+./homespeak gA $STR
+./homespeak gC $STR
+./homespeak aG $STR
+./homespeak cT $STR 
+./homespeak tC $STR
+./homespeak cA $STR
+./homespeak cC $STR
+echo "=============================="
+echo "Testing \"homespeak\" with color"
+echo "=============================="
+./homespeak --color aA $STR
+./homespeak --color aT $STR
+./homespeak --color tA $STR
+./homespeak --color cG $STR
+./homespeak --color aC $STR
+./homespeak --color gA $STR
+./homespeak --color gC $STR
+./homespeak --color aG $STR
+./homespeak --color cT $STR 
+./homespeak --color tC $STR
+./homespeak --color cA $STR
+./homespeak --color cC $STR
+echo "============================================="
+echo "Testing \"homespeak\" with color and background"
+echo "============================================="
+./homespeak --color --bg aA $STR
+./homespeak --color --bg aT $STR
+./homespeak --color --bg tA $STR
+./homespeak --color --bg cG $STR
+./homespeak --color --bg aC $STR
+./homespeak --color --bg gA $STR
+./homespeak --color --bg gC $STR
+./homespeak --color --bg aG $STR
+./homespeak --color --bg cT $STR 
+./homespeak --color --bg tC $STR
+./homespeak --color --bg cA $STR
+./homespeak --color --bg cC $STR
