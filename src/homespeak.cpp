@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <iostream>
 #include <functional>
+#include <cctype>
+#include <locale>
 #include <map>
 
 typedef std::map<std::string, std::function<std::string(std::string)> > mod_map;
@@ -10,8 +12,6 @@ typedef mod_map::iterator it_mod_map;
 
 typedef std::map<std::string, std::string> rep_map;
 typedef rep_map::iterator it_rep_map;
-
-std::locale loc;
 
 std::string multi_replace(std::string str, rep_map e_rep_map) {
     for ( it_rep_map it = e_rep_map.begin(); it != e_rep_map.end(); it++) {
@@ -182,7 +182,9 @@ int main(int argc, const char *argv[])
         if (!name.compare(it->first)) {
             if (color) std::cout << cols[name];
             if (bg) std::cout << cols["bg"];
-            std::cout << it->second(str) << cols["nop"] << std::endl;
+            std::cout << it->second(str).erase(str.find_last_not_of(" \n\t")+1);
+            if (color || bg) std::cout << cols["nop"];
+            std::cout << std::endl;
         }
     }
     return EXIT_SUCCESS;
