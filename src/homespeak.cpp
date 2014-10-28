@@ -29,6 +29,10 @@ mod_map mods = {
     {"", [](std::string str){return str;} },
     {"aA", [](std::string str){
                 rep_map replace_list = {
+                    {",", ""},
+                    {"!", ""},
+                    {"?", ""},
+                    {".", ""},
                     {"o", "0"},
                     {"'", ""} };
                 for (auto & c: str) c = tolower(c);
@@ -39,6 +43,12 @@ mod_map mods = {
                     {".", ","},
                     {"!", ","},
                     {"?", ","} };
+                str = multi_replace(str, replace_list);
+                for (auto & c: str) c = toupper(c);
+                str[0] = tolower(str[0]);
+                for (unsigned int j = 0; j < str.length(); j++)
+                    if (str[j] == ',')
+                        str[j+1] = tolower(str[j+1]);
                 return str;
             } },
     {"tA", [](std::string str){
@@ -55,10 +65,22 @@ mod_map mods = {
     {"aC", [](std::string str){
                 for (auto & c: str) c = tolower(c);
                 rep_map replace_list = {
+                    {"!", "!!"},
                     {":3", ":33"} };
                 return multi_replace(str, replace_list).insert(0, ":33 < ");
             } },
-    {"gA", [](std::string str){return str;} },
+    {"gA", [](std::string str){
+                rep_map replace_list = {
+                    {",", ""},
+                    {"!", ""},
+                    {"?", ""},
+                    {".", ""} };
+                str[0] = toupper(str[0]);
+                for (unsigned int j = 0; j < str.length(); j++)
+                    if (str[j] == ' ')
+                        str[j+1] = toupper(str[j+1]);
+                return multi_replace(str, replace_list);
+            } },
     {"gC", [](std::string str){
                 rep_map replace_list = {
                     {"A", "4"},
@@ -70,6 +92,8 @@ mod_map mods = {
             } },
     {"aG", [](std::string str){
                 rep_map replace_list = {
+                    {"b", "8"},
+                    {"B", "8"},
                     {"ate", "8"} };
                 return multi_replace(str, replace_list);
             } },
@@ -88,6 +112,7 @@ mod_map mods = {
             } },
     {"cA", [](std::string str){
                 rep_map replace_list = {
+                    {"w", "ww"},
                     {",", ""},
                     {"!", ""},
                     {",", ""},
