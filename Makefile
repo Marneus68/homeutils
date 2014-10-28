@@ -1,7 +1,7 @@
 # Takes the name of the current directory as a the executable and "pr" name
 TARGET  := $(shell basename $$PWD)
 # Compiler
-CC      := g++
+CC      := $(CXX)
 # Warning levels
 WARN    :=
 # Optimisation
