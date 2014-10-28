@@ -27,7 +27,6 @@ std::string multi_replace(std::string str, rep_map e_rep_map) {
 
 mod_map mods = {
     {"", [](std::string str){return str;} },
-    {"test", [](std::string str){return str;} },
     {"aA", [](std::string str){
                 rep_map replace_list = {
                     {"o", "0"},
@@ -35,7 +34,13 @@ mod_map mods = {
                 for (auto & c: str) c = tolower(c);
                 return multi_replace(str, replace_list);
             } },
-    {"aT", [](std::string str){return str;} },
+    {"aT", [](std::string str){
+                rep_map replace_list = {
+                    {".", ","},
+                    {"!", ","},
+                    {"?", ","} };
+                return str;
+            } },
     {"tA", [](std::string str){
                 rep_map replace_list = {
                     {"s", "2"},
@@ -49,8 +54,9 @@ mod_map mods = {
             } },
     {"aC", [](std::string str){
                 for (auto & c: str) c = tolower(c);
-                // add :33 < at the begining of the sentence
-                return str;
+                rep_map replace_list = {
+                    {":3", ":33"} };
+                return multi_replace(str, replace_list).insert(0, ":33 < ");
             } },
     {"gA", [](std::string str){return str;} },
     {"gC", [](std::string str){
@@ -71,12 +77,22 @@ mod_map mods = {
                 rep_map replace_list = {
                     {"x", "%"} };
                 for (auto & c: str) c = tolower(c);
-                // add D --> at the begining of the sentence
-                return multi_replace(str, replace_list);
+                return multi_replace(str, replace_list).insert(0, "D --> ");
             } },
-    {"tC", [](std::string str){return str;} },
+    {"tC", [](std::string str){
+                for (auto & c: str) c = toupper(c);
+                for(unsigned int i; i < str.length(); i++)
+                    if (i%2)
+                        str[i] = tolower(str[i]);
+                return str;
+            } },
     {"cA", [](std::string str){
                 rep_map replace_list = {
+                    {",", ""},
+                    {"!", ""},
+                    {",", ""},
+                    {"?", ""},
+                    {"\"", ""},
                     {"'", ""} };
                 for (auto & c: str) c = tolower(c);
                 return multi_replace(str, replace_list);
