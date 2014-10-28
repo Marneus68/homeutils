@@ -46,9 +46,14 @@ mod_map mods = {
                 str = multi_replace(str, replace_list);
                 for (auto & c: str) c = toupper(c);
                 str[0] = tolower(str[0]);
-                for (unsigned int j = 0; j < str.length(); j++)
-                    if (str[j] == ',')
+                bool l = false;
+                for (unsigned int j = 0; j < str.length(); j++) {
+                    if (str[j] == ',') l = true;
+                    if (str[j] == ' ' && l) {
                         str[j+1] = tolower(str[j+1]);
+                        l = false;
+                    }
+                }
                 return str;
             } },
     {"tA", [](std::string str){

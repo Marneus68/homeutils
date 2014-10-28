@@ -1,5 +1,5 @@
 #!/bin/sh
-STR="This is a test string. I have a common cold and I hate that. I'm not sure I really love that. I'm trying funny sentences to see what happens."
+STR="This is a test string. It aims to show how the \"homespeak\" behaves depending on the input it is provided with."
 echo "================="
 echo "Testing \"homespeak\""
 echo "================="
