@@ -6,7 +6,7 @@ This little collection is a work in progress. For now it includes :
 - homesay : a cowsay wrapper allowing you to draw your favourite characters in your terminal
 - homespeak : a tool allowing you to transform strings according to predefined "[typing quirks]()" along with the corresponding color (optional).
 
-If you want new characters to be added to the *homesay* tool I can be reached at [duane.bekaert@gmail.com](mailto:duane.bekaert@gmail.com). Don't hesitate to contact me if you find any bug or if you have other ideas for additional tools.
+If you want new characters to be added to *homesay* or *homespeak* I can be reached at [duane.bekaert@gmail.com](mailto:duane.bekaert@gmail.com). Don't hesitate to contact me if you find any bug or if you have other ideas for additional tools.
 
 Every contribution is welcome, just submit a pull request and I'll review it.
 
@@ -16,7 +16,7 @@ Please not that this project is in its early stages.
 
 After cloning the repository, you'll have to build *homspeak* bu running *make*. 
 
-    git clone xxx
+    git clone git@github.com:Marneus68/homeutils.git
     make
 
 Once this is done you can install all the tools at once by running the following command as root.
@@ -25,7 +25,7 @@ Once this is done you can install all the tools at once by running the following
 
 ## Dependencies
 
-Compiling *homespeak* requires a C++ compiler along with *make*. You'll also need *make* to install everything.
+Compiling *homespeak* requires a C++ compiler which can compile C++11 code along with *make*. You'll also need *make* to install everything.
 
 To work properly, *homesay* requires *cowsay* to be installed.
 
@@ -38,7 +38,6 @@ TODO
 The various tools can all be uninstalled by running the following command as root.
 
     make uninstall
-
 
 ### License
 
