@@ -3,7 +3,7 @@
 *homeutils* is a collection of command line tools and toys inspired by Homestuck.  
 This little collection is a work in progress. For now it includes :
 
-- homesay : a cowsay wrapper allowing you to draw your favourite characters in your terminal
+- homesay : a [cxxsay]() wrapper allowing you to draw your favourite characters in your terminal,
 - homespeak : a tool allowing you to transform strings according to predefined "[typing quirks]()" along with the corresponding color (optional).
 
 If you want new characters to be added to *homesay* or *homespeak* I can be reached at [duane.bekaert@gmail.com](mailto:duane.bekaert@gmail.com). Don't hesitate to contact me if you find any bug or if you have other ideas for additional tools.
@@ -27,7 +27,9 @@ Once this is done you can install all the tools at once by running the following
 
 Compiling *homespeak* requires a C++ compiler which can compile C++11 code along with *make*. You'll also need *make* to install everything.
 
-To work properly, *homesay* requires *cowsay* to be installed.
+TODO
+
+To work properly, *homesay* requires *cxxsay* to be installed.
 
 ## Running
 
@@ -35,7 +37,7 @@ TODO
 
 ## Uninstalling
 
-The various tools can all be uninstalled by running the following command as root.
+The various tools can all be uninstalled by running the following command as root:
 
     make uninstall
 
