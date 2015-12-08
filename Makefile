@@ -1,7 +1,5 @@
 # Takes the name of the current directory as a the executable and "pr" name
 TARGET  := $(shell basename $$PWD)
-# Compiler
-CC      := $(CXX)
 # Warning levels
 WARN    :=
 # Optimisation
@@ -14,7 +12,7 @@ OBJ_FILES   = $(CPP_SRCS:.cpp=.o)
 
 homespeak: src/homespeak.cpp
 	@echo "Compiling "$<".."
-	$(CC) $(OFLAGS) $(WARN) $< -o $@
+	$(CXX) $(OFLAGS) $(WARN) $< -o $@
 
 all: homespeak
 
