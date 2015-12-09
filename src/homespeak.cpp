@@ -10,6 +10,7 @@
 typedef std::map<std::string, std::function<std::string(std::string)> > mod_map;
 typedef mod_map::iterator it_mod_map;
 
+typedef std::map<std::string, std::string> mod_aliases;
 typedef std::map<std::string, std::string> rep_map;
 typedef rep_map::iterator it_rep_map;
 
@@ -25,8 +26,31 @@ std::string multi_replace(std::string str, rep_map e_rep_map) {
     return str;
 }
 
+rep_map cols = {
+    {"nop", "\033[00m"},
+    {"bg", "\033[107m"},
+    {"aA", "\033[38;5;124m"},
+    {"aT", "\033[38;5;130m"},
+    {"tA", "\033[38;5;142m"},
+    {"cG", "\033[38;5;241m"},
+    {"aC", "\033[38;5;58m"},
+    {"gA", "\033[38;5;29m"},
+    {"gC", "\033[38;5;30m"},
+    {"aG", "\033[38;5;24m"},
+    {"cT", "\033[38;5;17m"},
+    {"tC", "\033[38;5;53m"},
+    {"cA", "\033[38;5;91m"},
+    {"cC", "\033[38;5;89m"}
+};
+
+// AA AT TA CG AC GA GC AG CT TC CA CC
+
+mod_aliases mod_a = {
+    { "", "" }
+};
+
 mod_map mods = {
-    {"", [](std::string str){return str;} },
+    //{"", [](std::string str){return str;} },
     {"aA", [](std::string str){
                 rep_map replace_list = {
                     {",", ""},
@@ -135,22 +159,9 @@ mod_map mods = {
             } }
 };
 
-rep_map cols = {
-    {"nop", "\033[00m"},
-    {"bg", "\033[107m"},
-    {"aA", "\033[38;5;124m"},
-    {"aT", "\033[38;5;130m"},
-    {"tA", "\033[38;5;142m"},
-    {"cG", "\033[38;5;241m"},
-    {"aC", "\033[38;5;58m"},
-    {"gA", "\033[38;5;29m"},
-    {"gC", "\033[38;5;30m"},
-    {"aG", "\033[38;5;24m"},
-    {"cT", "\033[38;5;17m"},
-    {"tC", "\033[38;5;53m"},
-    {"cA", "\033[38;5;91m"},
-    {"cC", "\033[38;5;89m"}
-};
+void usage() {
+
+}
 
 int main(int argc, const char *argv[])
 {
@@ -167,6 +178,9 @@ int main(int argc, const char *argv[])
                 color = true;
             } else if (s.compare("bg")==0) {
                 bg = true;
+            } else if (s.compare("help")==0) {
+                usage();
+                exit(EXIT_SUCCESS);
             }
         } else {
             if (name.compare("")==0) { 
@@ -174,9 +188,12 @@ int main(int argc, const char *argv[])
                 continue; 
             }
             str += argv[i];
-            str += " ";
+            //str += " ";
         }
     }
+
+    if (str.size() ==0)
+        exit(EXIT_SUCCESS);
 
     for( it_mod_map it = mods.begin(); it != mods.end(); it++ ) {
         if (!name.compare(it->first)) {
