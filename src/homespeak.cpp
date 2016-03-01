@@ -201,7 +201,8 @@ int main(int argc, const char *argv[])
                 continue; 
             }
             str += argv[i];
-            str += " ";
+            if (i < argc-1)
+                str += " ";
         }
     }
 
