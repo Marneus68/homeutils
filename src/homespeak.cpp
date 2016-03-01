@@ -10,7 +10,6 @@
 typedef std::map<std::string, std::function<std::string(std::string)> > mod_map;
 typedef mod_map::iterator it_mod_map;
 
-typedef std::map<std::string, std::string> mod_aliases;
 typedef std::map<std::string, std::string> rep_map;
 typedef rep_map::iterator it_rep_map;
 
@@ -41,10 +40,6 @@ rep_map cols = {
     {"TC", "\033[38;5;53m"},
     {"CA", "\033[38;5;91m"},
     {"CC", "\033[38;5;89m"}
-};
-
-mod_aliases mod_a = {
-    { "", "" }
 };
 
 mod_map mods = {
