@@ -115,6 +115,7 @@ mod_map mods = {
                 rep_map replace_list = {
                     {"b", "8"},
                     {"B", "8"},
+                    {":)", "::::)"},
                     {"ate", "8"} };
                 return multi_replace(str, replace_list);
             } },
@@ -154,7 +155,7 @@ mod_map mods = {
 void usage() {
     std::cout <<"\
 usage: homespeak [--color] [--bg] [--help] <identifier>" << std::endl << std::endl <<
-"    --help      Display this usage message" << std::endl <<
+"    --help      Displays this usage message" << std::endl <<
 "    --color     Colors the text" << std::endl <<
 "    --bg        Adds a white background" << std::endl << std::endl <<
 "The identifier allows you to select which quirk you want to apply on the text." << std::endl << 

@@ -10,27 +10,42 @@ LDFLAGS :=
 CPP_SRCS    = $(wildcard src/*.cpp)
 OBJ_FILES   = $(CPP_SRCS:.cpp=.o)
 
-homespeak: src/homespeak.cpp
-	@echo "Compiling "$<".."
-	$(CXX) $(OFLAGS) $(WARN) $< -o $@
+# Colors
+black	= `tput setaf 0`
+red		= `tput setaf 1`
+green	= `tput setaf 2`
+yellow	= `tput setaf 3`
+blue	= `tput setaf 4`
+magenta = `tput setaf 5`
+cyan	= `tput setaf 2`
+white	= `tput setaf 7`
+reset	= `tput sgr0`
 
 all: homespeak
 
+homespeak: src/homespeak.cpp
+	@echo "$(blue)Compiling $(yellow)"$<"$(blue)...$(reset)"
+	$(CXX) $(OFLAGS) $(WARN) $< -o $@
+	@echo "$(green)Done.$(reset)"
+
 clean: 
-	@echo "Cleaning..."
+	@echo "$(blue)Cleaning objects...$(reset)"
 	rm -rf ./src/*.o
 
 mrproper: clean
+	@echo "$(blue)Cleaning executables...$(reset)"
 	rm -rf homespeak
 
 install: all
-	@echo "Installing..."
+	@echo "$(blue)Installing...$(reset)"
 	install homesay /usr/bin
 	install homespeak /usr/bin
 	cp -rf homecows /usr/share
+	@echo "$(green)Done.$(reset)"
 
 uninstall:
-	@echo "Uninstalling..."
+	@echo "$(blue)Uninstalling...$(reset)"
 	rm -rf /usr/share/homecows
 	rm -rf /usr/bin/homesay
 	rm -rf /usr/bin/homespeak
+	@echo "$(green)Done.$(reset)"
