@@ -21,6 +21,13 @@ cyan	= `tput setaf 2`
 white	= `tput setaf 7`
 reset	= `tput sgr0`
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	INSTALL_DIR := /usr/local
+else
+	INSTALL_DIR := /usr
+endif
+
 all: homespeak
 
 homespeak: src/homespeak.cpp
@@ -38,14 +45,15 @@ mrproper: clean
 
 install: all
 	@echo "$(blue)Installing...$(reset)"
-	install homesay /usr/bin
-	install homespeak /usr/bin
-	cp -rf homecows /usr/share
+	install homesay $(INSTALL_DIR)/bin
+	install homespeak $(INSTALL_DIR)/bin
+	install -d homecows $(INSTALL_DIR)/share/homecows
+	install homecows/* $(INSTALL_DIR)/share/homecows
 	@echo "$(green)Done.$(reset)"
 
 uninstall:
 	@echo "$(blue)Uninstalling...$(reset)"
-	rm -rf /usr/share/homecows
-	rm -rf /usr/bin/homesay
-	rm -rf /usr/bin/homespeak
+	rm -rf $(INSTALL_DIR)/share/homecows
+	rm -rf $(INSTALL_DIR)/bin/homesay
+	rm -rf $(INSTALL_DIR)/bin/homespeak
 	@echo "$(green)Done.$(reset)"

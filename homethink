@@ -6,4 +6,4 @@ else
 	INSTALL_DIR="/usr"
 fi
 export COWPATH=$INSTALL_DIR"/share/homecows"
-cxxsay $@
+cxxthink $@
